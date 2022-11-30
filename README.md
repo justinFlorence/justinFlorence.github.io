@@ -1,2 +1,2 @@
 # jusflo.github.io
-Personal website
+Simple personal website made entirely from scratch using html and css. 
