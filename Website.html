@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Florence's Personal Webpage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+        header {
+            font-family: 'Lucida', cursive;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 200px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        nav a {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: rgba(0, 64, 138, 0.7);
+        }
+        section {
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            margin: 20px;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-shadow: none;
+        }
+        .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .nav-open nav {
+            display: flex;
+            transform: translateX(0);
+        }
+        .portfolio-images {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .portfolio-images img {
+            max-width: 30%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+	
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Justin Florence</h1>
+        <p>Math and Computer Science Dual Major</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/justin-florence-4b25ba231/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/justinflorence" target="_blank">GitHub</a>
+        </div>
+    </header>
+    <div class="menu-button" onclick="toggleMenu()">&#9776;</div>
+    <nav id="nav">
+        <a href="#about">About Me</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hi, I'm Justin Florence. I'm currently pursuing a dual major in Math and Computer Science at North Carolina State University. I have a passion for problem-solving and a keen interest in both theoretical and applied aspects of these fields. My goal is to leverage my skills in mathematics and computer science to contribute to innovative projects and research.</p>
+    </section>
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <p>Here is a showcase of some of my projects and work:</p>
+        <ul>
+            <li>The first image, from left to right, is a best fit model for disease data published by the cdc. It was constructed in matlb using ode45.</li>
+            <li>The second image is a best fit attempting to model the differusion of heat through different metals and comparing it to observed temperatures.</li>
+            <li>The third image is a short proof demonstrating the properties of a least squares solution given positive definite matrix S.</li>
+        </ul>
+        <div class="portfolio-images">
+            <img src="image1.png" alt="Project Image 1">
+            <img src="image2.png" alt="Project Image 2">
+            <img src="image3.png" alt="Project Image 3">
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:jrfloren@ncsu.edu">jrfloren@ncsu.edu</a></p>
+        <p>Phone: 919-698-4459</p>
+    </section>
+    <script>
+        function toggleMenu() {
+            document.body.classList.toggle('nav-open');
+        }
+    </script>
+</body>
+</html>
+
