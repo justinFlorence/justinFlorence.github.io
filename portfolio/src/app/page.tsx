@@ -15,21 +15,22 @@ export default function Home() {
     const typingSpeed = 50;
     const deleteSpeed = 30;
     const pauseDuration = 1500;
+    let timerId: ReturnType<typeof setTimeout>;
 
     const handleTyping = () => {
       if (phase === 'typing') {
         if (currentIndex <= fullText.length) {
           setDisplayText(fullText.slice(0, currentIndex));
           currentIndex++;
-          setTimeout(handleTyping, typingSpeed);
+          timerId = setTimeout(handleTyping, typingSpeed);
         } else {
-          setTimeout(() => setPhase('deleting'), pauseDuration);
+          timerId = setTimeout(() => setPhase('deleting'), pauseDuration);
         }
       } else if (phase === 'deleting') {
         if (currentIndex >= 0) {
           setDisplayText(fullText.slice(0, currentIndex));
           currentIndex--;
-          setTimeout(handleTyping, deleteSpeed);
+          timerId = setTimeout(handleTyping, deleteSpeed);
         } else {
           setPhase('welcoming');
         }
@@ -37,14 +38,14 @@ export default function Home() {
         if (currentIndex <= "Welcome!".length) {
           setDisplayText("Welcome!".slice(0, currentIndex));
           currentIndex++;
-          setTimeout(handleTyping, typingSpeed);
+          timerId = setTimeout(handleTyping, typingSpeed);
         }
       }
     };
 
     handleTyping();
 
-    return () => clearTimeout(handleTyping);
+    return () => clearTimeout(timerId);
   }, [phase]);
 
   return (
