@@ -3,13 +3,34 @@
 @tailwind utilities;
 
 /* Custom animations */
-@layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply bg-black text-white font-mono;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom component classes */
+@layer components {
+  .terminal-text {
+    @apply text-2xl sm:text-3xl text-white whitespace-pre-line;
+  }
+  
+  .profile-image-container {
+    @apply relative w-64 h-64 mx-auto rounded-full overflow-hidden mb-8;
   }
 }
