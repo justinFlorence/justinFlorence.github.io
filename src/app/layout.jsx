@@ -1,13 +1,16 @@
-import { Playfair_Display, Poppins } from 'next/font/google'
+import './globals.css';
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
+export const metadata = {
+  title: 'Justin Florence - Portfolio',
+  description: 'Math & CS Major | Amazon SDE',
+};
 
-const poppins = Poppins({
-  weight: ['400', '600'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-})
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className="bg-gray-50 dark:bg-gray-900 transition-colors">
+        {children}
+      </body>
+    </html>
+  );
+}
