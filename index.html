@@ -1,139 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justin Florence's Personal Webpage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            margin: 0;
-            padding: 0;
-            background: url('background.png') no-repeat center center fixed;
-            background-size: cover;
-            color: black;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            text-align: center;
-        }
-        header {
-            font-family: 'Lucida', cursive;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        }
-        .social-links {
-            margin-top: 10px;
-        }
-        .social-links a {
-            margin: 0 10px;
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-        }
-        nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 200px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        nav a {
-            font-family: 'Roboto', sans-serif;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-        nav a:hover {
-            background-color: rgba(0, 64, 138, 0.7);
-        }
-        section {
-            font-family: 'Roboto', sans-serif;
-            padding: 20px;
-            margin: 20px;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-shadow: none;
-        }
-        .menu-button {
-            font-size: 24px;
-            cursor: pointer;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-        }
-        .nav-open nav {
-            display: flex;
-            transform: translateX(0);
-        }
-        .portfolio-images {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .portfolio-images img {
-            max-width: 30%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-	
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Justin Florence's Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Define CSS variables for dark & light modes */
+    :root {
+      --bg-color: #121212;
+      --section-bg: #1e1e1e;
+      --text-color: #F0F0F0;
+      --accent-color: #0AF;
+      --shadow-color: rgba(0, 0, 0, 0.7);
+    }
+    /* Light mode variables */
+    .light-mode {
+      --bg-color: #f4f4f4;
+      --section-bg: #ffffff;
+      --text-color: #333333;
+      --accent-color: #007acc;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    /* Parallax header using background-attachment fixed */
+    header {
+      background: url('header-bg.jpg') center/cover no-repeat fixed;
+      padding: 60px 20px;
+      position: relative;
+      text-align: center;
+      color: var(--text-color);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      text-shadow: 1px 1px 4px var(--shadow-color);
+    }
+    /* Navigation */
+    .menu-button {
+      font-size: 24px;
+      cursor: pointer;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      color: var(--text-color);
+      z-index: 1001;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+      z-index: 1001;
+      transition: color 0.3s ease;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 220px;
+      background-color: var(--section-bg);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 4px var(--shadow-color);
+      z-index: 1000;
+    }
+    nav a {
+      padding: 15px;
+      width: 100%;
+      text-decoration: none;
+      color: var(--text-color);
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+    }
+    nav a:hover {
+      background-color: var(--accent-color);
+    }
+    .nav-open nav {
+      transform: translateX(0);
+    }
+    /* Sections */
+    section {
+      padding: 40px 20px;
+      margin: 20px;
+      background-color: var(--section-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+      transition: background-color 0.3s ease;
+    }
+    /* Portfolio Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .portfolio-card {
+      background-color: var(--section-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .portfolio-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px var(--shadow-color);
+    }
+    .portfolio-card img {
+      width: 100%;
+      display: block;
+    }
+    .card-content {
+      padding: 15px;
+      text-align: left;
+    }
+    .card-content h3 {
+      margin: 0 0 10px;
+      color: var(--accent-color);
+    }
+    .card-content p {
+      margin: 0;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+    /* Blog page placeholder */
+    .blog-placeholder {
+      font-style: italic;
+      font-size: 1.1em;
+      color: var(--accent-color);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Justin Florence</h1>
-        <p>Math and Computer Science Dual Major</p>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/justin-florence-4b25ba231/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/justinflorence" target="_blank">GitHub</a>
-        </div>
-    </header>
-    <div class="menu-button" onclick="toggleMenu()">&#9776;</div>
-    <nav id="nav">
-        <a href="#about">About Me</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi, I'm Justin Florence. I'm currently pursuing a dual major in Math and Physics at North Carolina State University. I have a passion for problem-solving and a keen interest in both theoretical and applied aspects of these fields. My goal is to leverage my skills in mathematics and computer science to contribute to innovative projects and research.</p>
-    </section>
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <p>Here is a showcase of some of my projects and work:</p>
-        <ul>
-            <li>The first image, from left to right, is a best fit model for disease data published by the cdc. It was constructed in matlb using ode45.</li>
-            <li>The second image is a best fit attempting to model the differusion of heat through different metals and comparing it to observed temperatures.</li>
-            <li>The third image is a short proof demonstrating the properties of a least squares solution given positive definite matrix S.</li>
-        </ul>
-        <div class="portfolio-images">
-            <img src="image1.png" alt="Project Image 1">
-            <img src="image2.png" alt="Project Image 2">
-            <img src="image3.png" alt="Project Image 3">
-        </div>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:jrfloren@ncsu.edu">jrfloren@ncsu.edu</a></p>
-        <p>Phone: 919-698-4459</p>
-    </section>
-    <script>
-        function toggleMenu() {
-            document.body.classList.toggle('nav-open');
-        }
-    </script>
+  <header>
+    <h1>Justin Florence</h1>
+    <p>Math & Computer Science Major | Amazon SDE</p>
+  </header>
+
+  <!-- Hamburger menu & Dark/Light toggle -->
+  <div class="menu-button" onclick="toggleMenu()">&#9776;</div>
+  <button class="dark-toggle" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle Dark/Light Mode">☾</button>
+
+  <!-- Sidebar Navigation -->
+  <nav id="sideNav">
+    <a href="#about" onclick="toggleMenu()">About Me</a>
+    <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+    <a href="#blog" onclick="toggleMenu()">Blog</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+  </nav>
+
+  <!-- Main Sections -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hi, I'm Justin Florence. I'm passionate about problem-solving and tech innovation. Recently I joined Amazon as an SDE and I'm excited to showcase my projects and journey.</p>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <p>Explore some of my personal projects:</p>
+    <div class="portfolio-grid" id="projectGrid">
+      <!-- Project cards will be dynamically inserted here -->
+      <p>Loading projects...</p>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2>Blog</h2>
+    <p class="blog-placeholder">Blog – still in progress...</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:jrfloren@ncsu.edu" style="color: var(--accent-color);">jrfloren@ncsu.edu</a></p>
+    <p>Phone: 919-698-4459</p>
+  </section>
+
+  <script>
+    // Toggle the sidebar menu
+    function toggleMenu() {
+      document.body.classList.toggle('nav-open');
+    }
+
+    // Dark/Light mode toggle with icon change
+    function toggleTheme() {
+      const body = document.body;
+      const toggleBtn = document.getElementById('themeToggle');
+      body.classList.toggle('light-mode');
+      // Change icon: ☾ (moon) for dark mode, ☀ (sun) for light mode
+      if (body.classList.contains('light-mode')) {
+        toggleBtn.textContent = "☀";
+      } else {
+        toggleBtn.textContent = "☾";
+      }
+    }
+
+    // Fetch projects from GitHub API
+    async function fetchProjects() {
+      try {
+        const response = await fetch('https://api.github.com/users/justinflorence/repos');
+        const repos = await response.json();
+        const grid = document.getElementById('projectGrid');
+        grid.innerHTML = ''; // Clear loading text
+        // Filter out forked repos and sort by stargazers count
+        const projects = repos.filter(repo => !repo.fork)
+                              .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                              .slice(0, 6); // Display top 6 projects
+        projects.forEach(repo => {
+          const card = document.createElement('div');
+          card.className = 'portfolio-card';
+          card.innerHTML = `
+            <img src="https://via.placeholder.com/400x200?text=${encodeURIComponent(repo.name)}" alt="${repo.name}">
+            <div class="card-content">
+              <h3>${repo.name}</h3>
+              <p>${repo.description || 'No description provided.'}</p>
+              <p><a href="${repo.html_url}" target="_blank" style="color: var(--accent-color);">See Code</a></p>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        document.getElementById('projectGrid').innerHTML = '<p>Error loading projects.</p>';
+      }
+    }
+    fetchProjects();
+  </script>
 </body>
 </html>
-
