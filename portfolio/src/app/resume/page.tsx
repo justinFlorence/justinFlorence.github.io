@@ -26,7 +26,7 @@ export default function Resume() {
           transition={{ duration: 0.5 }}
           className="space-y-8"
         >
-          <div className="bg-white/10 p-8 rounded-lg backdrop-blur-sm">
+          <div className="bg-black bg-opacity-50 p-8 rounded-lg backdrop-blur-sm">
             <h1 className="text-4xl font-bold mb-4">Justin Florence</h1>
             <p className="mb-2">jrfloren@ncsu.edu | 919-698-4459 | Raleigh, NC</p>
             <div className="flex space-x-4 mb-6">
