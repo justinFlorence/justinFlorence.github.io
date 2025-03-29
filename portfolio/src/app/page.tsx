@@ -7,46 +7,59 @@ import Navbar from '@/components/Navbar';
 
 export default function Home() {
   const [displayText, setDisplayText] = useState('');
+  // Phases: 'typing' => typing fullText; 'deleting' => deleting fullText; 'welcoming' => typing "Welcome!"
   const [phase, setPhase] = useState<'typing' | 'deleting' | 'welcoming'>('typing');
   const fullText = "Hi, I'm Justin Florence\nMath & CS Major";
+  const welcomeText = "Welcome!";
+  const typingSpeed = 50;
+  const deleteSpeed = 30;
+  const pauseDuration = 1500;
 
   useEffect(() => {
     let currentIndex = 0;
-    const typingSpeed = 50;
-    const deleteSpeed = 30;
-    const pauseDuration = 1500;
     let timerId: ReturnType<typeof setTimeout>;
 
     const handleTyping = () => {
       if (phase === 'typing') {
+        // Type out the fullText completely
         if (currentIndex <= fullText.length) {
           setDisplayText(fullText.slice(0, currentIndex));
           currentIndex++;
           timerId = setTimeout(handleTyping, typingSpeed);
         } else {
-          timerId = setTimeout(() => setPhase('deleting'), pauseDuration);
+          // Full text typed; pause before deleting
+          timerId = setTimeout(() => {
+            setPhase('deleting');
+          }, pauseDuration);
         }
       } else if (phase === 'deleting') {
-        if (currentIndex >= 0) {
-          setDisplayText(fullText.slice(0, currentIndex));
+        // Delete the text completely
+        if (currentIndex > 0) {
           currentIndex--;
+          setDisplayText(fullText.slice(0, currentIndex));
           timerId = setTimeout(handleTyping, deleteSpeed);
         } else {
+          // Text fully deleted; switch to welcoming phase
           setPhase('welcoming');
         }
       } else if (phase === 'welcoming') {
-        if (currentIndex <= "Welcome!".length) {
-          setDisplayText("Welcome!".slice(0, currentIndex));
+        // Type out "Welcome!" completely
+        if (currentIndex <= welcomeText.length) {
+          setDisplayText(welcomeText.slice(0, currentIndex));
           currentIndex++;
           timerId = setTimeout(handleTyping, typingSpeed);
+        } else {
+          // "Welcome!" fully typed; pause before restarting cycle
+          timerId = setTimeout(() => {
+            setPhase('typing'); // This will reset currentIndex via effect re-run
+          }, pauseDuration);
         }
       }
     };
 
     handleTyping();
-
     return () => clearTimeout(timerId);
-  }, [phase]);
+  }, [phase, fullText, welcomeText]);
 
   return (
     <div className="min-h-screen">
@@ -78,7 +91,7 @@ export default function Home() {
           </motion.div>
 
           <div className="content-card inline-block bg-black/80 p-4 rounded-md">
-            <AnimatePresence mode='wait'>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={displayText}
                 initial={{ opacity: 0 }}
